@@ -25,6 +25,13 @@
           <button class="btn btn-success" onclick="update()">غلق الحدود مع بؤر الفيروس</button>
 
      </div>
+     <div>
+          <button class="btn btn-danger" onclick="updateadd()"> +</button>
+          <button class="btn btn-danger" onclick="updatedel()">-</button>
+
+
+     </div>
+
    </div>
    <div class="card-body">
     <canvas id="myChart"></canvas>
@@ -34,7 +41,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script >
-
+    var d=0.07
     var a2=0.010
     var b2=8
     var c2=4.14
@@ -72,7 +79,7 @@ var chart = new Chart(ctx, {
             label: 'قدرة استيعاب المستشفى',
             backgroundColor: 'rgba(75, 163, 251,0.0)',
             borderColor: 'rgb(237, 2, 2)',
-            data: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30].map(item=>0.07)
+            data: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30].map(item=>d)
         },
         {
             label: 'قدرة استيعاب المستشفى',
@@ -87,6 +94,20 @@ var chart = new Chart(ctx, {
     // Configuration options go here
     options: {}
 });
+
+function updateadd(){
+  d=d+0.02
+  chart.data.datasets[2].data=chart.data.datasets[2].data.map(item=>d)
+  chart.update()
+
+}
+
+function updatedel(){
+  d=d-0.02
+  chart.data.datasets[2].data=chart.data.datasets[2].data.map(item=>d)
+  chart.update()
+
+}
 
 
 function update(){
